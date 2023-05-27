@@ -1,6 +1,5 @@
 import React from "react";
-import data from "./dummy_data.json";
-const Table = () => {
+const Table = ({data}) => {
   return (
     <>
       <div className="fit">
@@ -8,15 +7,18 @@ const Table = () => {
           <tbody>
             <tr>
               <th>Parameter</th>
-              {data.map((data, index) => (
-                <th key={index}>{data.data[index].time}</th>
-            ))}
+
+              {data[0].data.map((data, index) => (
+                <th key={index}>{data.time}</th>
+              ))}
             </tr>
 
             {data.map((data, index) => (
               <tr key={index}>
                 <td>{data.name}</td>
-                <td>{data.data[index].value}</td>
+                {data.data.map((time, index) => (
+                  <td key={index}>{time.value}</td>
+                ))}
               </tr>
             ))}
           </tbody>
